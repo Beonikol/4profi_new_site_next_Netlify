@@ -10,35 +10,36 @@ export default function AboutPage() {
 
   return (
     <main className="py-16 px-4 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6">{data.title}</h1>
+      
+      {/* Заголовок */}
+      <h1 className="text-4xl font-bold mb-8">{data.title}</h1>
+
+      {/* Галерея Фото (перша секція після заголовка) */}
+      {data.images && data.images.length > 0 && (
+        <section className="space-y-6 mb-12">
+          {data.images.map((img: any, i: number) => {
+            const src = typeof img === "string" ? img : img.image;
+            return (
+              <div key={i} className="w-full flex justify-center">
+                <Image
+                  src={src}
+                  alt={`Фото ${i + 1}`}
+                  width={800}
+                  height={600}
+                  className="rounded-lg shadow-md w-full max-w-[800px] object-cover"
+                />
+              </div>
+            );
+          })}
+        </section>
+      )}
 
       {/* Основний текст */}
-      <div className="prose prose-lg max-w-none mb-10">
+      <div className="prose prose-lg max-w-none mb-12">
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </div>
 
-      {/* Галерея фото */}
-{data.images && data.images.length > 0 && (
-  <section className="space-y-6 mb-12">
-    {data.images.map((img: any, i: number) => {
-      const src = typeof img === "string" ? img : img.image;
-
-      return (
-        <div key={i} className="w-full flex justify-center">
-          <Image
-            src={src}
-            alt={`Фото ${i + 1}`}
-            width={800}
-            height={600}
-            className="rounded-lg shadow-md w-full max-w-[800px] object-cover"
-          />
-        </div>
-      );
-    })}
-  </section>
-)}
-
-      {/* Відео (адаптивне, як YouTube 16:9) */}
+      {/* Відео */}
       {data.video && (
         <div className="w-full flex justify-center mt-10">
           <div className="w-full max-w-[800px] aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
