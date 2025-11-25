@@ -8,12 +8,20 @@ public_folder: "/uploads"
 collections:
   - name: "about"
     label: "Про нас"
-    file: "content/about.md"
-    fields:
-      - { label: "Заголовок", name: "title", widget: "string" }
-      - { label: "Контент", name: "body", widget: "markdown" }
-      - { label: "Картинки", name: "images", widget: "list", field: {label: Фото, name: image, widget: image} }
-      - { label: "Відео", name: "video", widget: "file", media_library: {type: file} }
+    files:
+      - file: "content/about.md"
+        label: "Про нас"
+        name: "about"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Контент", name: "body", widget: "markdown" }
+          - {
+              label: "Картинки",
+              name: "images",
+              widget: "list",
+              field: { label: Фото, name: image, widget: image }
+            }
+          - { label: "Відео", name: "video", widget: "file" }
 
   - name: "services"
     label: "Види послуг"
@@ -24,7 +32,12 @@ collections:
       - { label: Заголовок, name: title, widget: string }
       - { label: Slug, name: slug, widget: string }
       - { label: Превʼю, name: preview, widget: image }
-      - { label: Галерея, name: gallery, widget: list, field: {label: Фото, name: image, widget: image} }
+      - {
+          label: Галерея,
+          name: gallery,
+          widget: list,
+          field: { label: Фото, name: image, widget: image }
+        }
       - { label: Відео, name: video, widget: file }
       - { label: Прайс, name: price, widget: markdown }
       - { label: Опис, name: body, widget: markdown }
