@@ -18,7 +18,7 @@ export default function AboutPage() {
 
       {/* Галерея фото */}
       {data.images && data.images.length > 0 && (
-        <section className="space-y-6 mb-12">
+        <section className="space-y-8 mb-16">
           {data.images.map((img: any, i: number) => (
             <div key={i} className="w-full flex justify-center">
               <img
@@ -31,14 +31,16 @@ export default function AboutPage() {
         </section>
       )}
 
-      {/* Відео */}
+      {/* Відео (адаптивне, як YouTube 16:9) */}
       {data.video && (
         <div className="w-full flex justify-center mt-10">
-          <video
-            src={data.video}
-            controls
-            className="w-full max-w-[800px] rounded-lg shadow-lg"
-          />
+          <div className="w-full max-w-[800px] aspect-video bg-black rounded-lg overflow-hidden shadow-lg">
+            <video
+              src={data.video}
+              controls
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       )}
     </main>
