@@ -6,22 +6,27 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "about"
+    - name: "about"
     label: "Про нас"
-    files:
-      - file: "content/about.md"
-        label: "Про нас"
-        name: "about"
-        fields:
-          - { label: "Заголовок", name: "title", widget: "string" }
-          - { label: "Контент", name: "body", widget: "markdown" }
-          - {
-              label: "Картинки",
-              name: "images",
-              widget: "list",
-              field: { label: Фото, name: image, widget: image }
-            }
-          - { label: "Відео", name: "video", widget: "file" }
+    folder: "content/about"
+    create: false
+    slug: "index"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Основний текст", name: "body", widget: "markdown" }
+      - label: "Галерея фото"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Фото"
+          name: "image"
+          widget: "image"
+      - label: "Відео"
+        name: "video"
+        widget: "file"
+        required: false
+        allow_multiple: false
+
 
   - name: "services"
     label: "Види послуг"
