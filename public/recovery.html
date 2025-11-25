@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Password Recovery</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <script>
+      if (window.location.hash.includes("recovery_token=")) {
+        netlifyIdentity.on("init", () => {
+          netlifyIdentity
+            .recover()
+            .then(user => {
+              alert("Пароль успішно змінено! Тепер увійди в адмінку.");
+              window.location.href = "/admin/";
+            })
+            .catch(err => console.error(err));
+        });
+      } else {
+        document.write("Invalid recovery link.");
+      }
+    </script>
+  </body>
+</html>
