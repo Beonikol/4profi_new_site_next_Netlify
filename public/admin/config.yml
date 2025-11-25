@@ -29,7 +29,7 @@ collections:
 
   -   - name: "services"
         label: "Види послуг"
-        folder: "content/services"
+        folder: "content/services/"
         create: true
         slug: "{{title}}"
         fields:
