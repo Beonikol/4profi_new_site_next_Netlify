@@ -1,7 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import Image from "next/image";
 
 export default function AboutPage() {
   const filePath = path.join(process.cwd(), "content/about/index.md");
@@ -22,11 +21,9 @@ export default function AboutPage() {
         <section className="space-y-6 mb-12">
           {data.images.map((img: any, i: number) => (
             <div key={i} className="w-full flex justify-center">
-              <Image
+              <img
                 src={img.image}
                 alt={`Фото ${i + 1}`}
-                width={800}
-                height={600}
                 className="rounded-lg shadow-md w-full max-w-[800px] object-cover"
               />
             </div>
