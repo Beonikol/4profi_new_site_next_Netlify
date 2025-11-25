@@ -1,6 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import Image from "next/image";
 
 export default function AboutPage() {
   const filePath = path.join(process.cwd(), "content/about/index.md");
@@ -17,19 +18,25 @@ export default function AboutPage() {
       </div>
 
       {/* Галерея фото */}
-      {data.images && data.images.length > 0 && (
-        <section className="space-y-8 mb-16">
-          {data.images.map((img: any, i: number) => (
-            <div key={i} className="w-full flex justify-center">
-              <img
-                src={img.image}
-                alt={`Фото ${i + 1}`}
-                className="rounded-lg shadow-md w-full max-w-[800px] object-cover"
-              />
-            </div>
-          ))}
-        </section>
-      )}
+{data.images && data.images.length > 0 && (
+  <section className="space-y-6 mb-12">
+    {data.images.map((img: any, i: number) => {
+      const src = typeof img === "string" ? img : img.image;
+
+      return (
+        <div key={i} className="w-full flex justify-center">
+          <Image
+            src={src}
+            alt={`Фото ${i + 1}`}
+            width={800}
+            height={600}
+            className="rounded-lg shadow-md w-full max-w-[800px] object-cover"
+          />
+        </div>
+      );
+    })}
+  </section>
+)}
 
       {/* Відео (адаптивне, як YouTube 16:9) */}
       {data.video && (
