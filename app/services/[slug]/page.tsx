@@ -5,7 +5,21 @@ import Image from "next/image";
 
 export async function generateStaticParams() {
   const folder = path.join(process.cwd(), "content/services");
-  const files = fs.readdirSync(folder);
+
+  // Якщо папка не існує — повертаємо пустий масив
+  if (!fs.existsSync(folder)) {
+    return [];
+  }
+
+  // Фільтруємо тільки .md (бо може бути .gitkeep)
+  const files = fs
+    .readdirSync(folder)
+    .filter((file) => file.endsWith(".md"));
+
+  // Якщо немає файлів — теж нічого не генеруємо
+  if (files.length === 0) {
+    return [];
+  }
 
   return files.map((file) => ({
     slug: file.replace(".md", ""),
@@ -13,13 +27,22 @@ export async function generateStaticParams() {
 }
 
 export default function ServicePage({ params }: { params: { slug: string } }) {
-  const filePath = path.join(process.cwd(), "content/services", `${params.slug}.md`);
+  const filePath = path.join(
+    process.cwd(),
+    "content/services",
+    `${params.slug}.md`
+  );
+
+  // Якщо файла немає — повертаємо порожню сторінку
+  if (!fs.existsSync(filePath)) {
+    return <main className="py-16 px-4 max-w-4xl mx-auto">Послуга не знайдена.</main>;
+  }
+
   const file = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(file);
 
   return (
     <main className="py-16 px-4 max-w-4xl mx-auto">
-
       <h1 className="text-4xl font-bold mb-6">{data.title}</h1>
 
       {/* Фото-превʼю */}
