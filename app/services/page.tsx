@@ -9,10 +9,10 @@ export default function ServicesPage() {
   const files = fs.readdirSync(dir);
 
   const services = files.map((filename) => {
-    const file = fs.readFileSync(path.join(dir, filename), "utf-8");
-    const { data } = matter(file);
-    return data;
-  });
+  const file = fs.readFileSync(path.join(dir, filename), "utf-8");
+  const { data } = matter(file);
+  return data;
+});
 
   return (
     <main className="py-16 px-4 max-w-5xl mx-auto">

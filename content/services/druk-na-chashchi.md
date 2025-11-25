@@ -1,6 +1,6 @@
 ---
 title: Друк на чашці
-slug: druk-na-chashci
+slug: druk-na-chashchi
 preview: /uploads/cups.jpg
 gallery:
   - /uploads/photo1.jpg
