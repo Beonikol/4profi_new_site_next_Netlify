@@ -27,14 +27,13 @@ collections:
         required: false
         allow_multiple: false
 
-  - name: "services"
-    label: "Види послуг"
-    folder: "content/services"
-    create: true
-    slug: "{{slug}}"
-    fields:
+  -   - name: "services"
+        label: "Види послуг"
+        folder: "content/services"
+        create: true
+        slug: "{{title}}"
+        fields:
       - { label: "Заголовок", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string" }
       - { label: "Превʼю", name: "preview", widget: "image" }
       - label: "Галерея"
         name: "gallery"
@@ -46,6 +45,7 @@ collections:
       - { label: "Відео", name: "video", widget: "file" }
       - { label: "Прайс", name: "price", widget: "markdown" }
       - { label: "Опис", name: "body", widget: "markdown" }
+
 
   - name: "portfolio"
     label: "Портфоліо"
