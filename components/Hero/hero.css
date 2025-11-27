@@ -1,0 +1,166 @@
+/* ================================
+   КОНТЕЙНЕР
+================================ */
+.cine-hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* ================================
+   ФОНОВЕ ВІДЕО (повільний зум)
+================================ */
+.cine-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.40);
+  animation: cineZoom 16s ease-in-out infinite alternate;
+}
+
+@keyframes cineZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+/* ================================
+   МʼЯКИЙ ГРАДІЄНТНИЙ ТУМАН
+================================ */
+.cine-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.1) 0%,
+    rgba(0,0,0,0.55) 70%
+  );
+  z-index: 1;
+}
+
+/* ================================
+   ДЕКОРАТИВНІ КІНЕМАТОГРАФІЧНІ КАРТИНКИ
+================================ */
+.cine-img {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  filter: blur(1px);
+  transform: translateY(30px);
+  animation: cineFade 1.6s ease forwards;
+}
+
+.cine-img-left {
+  left: 0;
+  bottom: 5%;
+  width: 28vw;
+  opacity: 0.65;
+  animation: slideLeft 1.6s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-90px) translateY(20px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 0.75;
+    transform: translateX(0) translateY(0);
+    filter: blur(0);
+  }
+}
+
+.cine-img-right {
+  right: 0;
+  top: 5%;
+  width: 28vw;
+  opacity: 0.65;
+  animation: slideRight 1.6s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(90px) translateY(20px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 0.75;
+    transform: translateX(0) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ================================
+   ТЕКСТ (fade + slight up)
+================================ */
+.cine-text {
+  position: relative;
+  text-align: center;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cineText 1.2s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes cineText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cine-title-1 {
+  font-size: 3.7rem;
+  font-weight: 700;
+}
+.cine-title-2 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+.cine-subtitle {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  opacity: 0.85;
+}
+
+/* ================================
+   МОБІЛЬНА АДАПТАЦІЯ
+================================ */
+@media (max-width: 768px) {
+  .cine-title-1 { font-size: 2.2rem; }
+  .cine-title-2 { font-size: 1.4rem; }
+  .cine-subtitle { font-size: 1rem; }
+
+  .cine-img-left,
+  .cine-img-right {
+    width: 65vw;
+    opacity: 0.5;
+  }
+
+  .cine-img-left { bottom: 0%; }
+  .cine-img-right { top: 10%; }
+}
+
+@media (max-width: 480px) {
+  .cine-title-1 { font-size: 1.9rem; }
+  .cine-title-2 { font-size: 1.2rem; }
+  .cine-subtitle { font-size: 0.95rem; }
+
+  .cine-img-left,
+  .cine-img-right {
+    width: 80vw;
+    opacity: 0.45;
+  }
+}

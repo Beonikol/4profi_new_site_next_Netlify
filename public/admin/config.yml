@@ -2,12 +2,16 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend: true   # ← додаєш одразу після backend
-
-publish_mode: editorial_workflow
+local_backend: true
+publish_mode: simple
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
+
+slug:
+  encoding: unicode
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
   - name: "about"
@@ -29,13 +33,12 @@ collections:
         name: "video"
         widget: "file"
         required: false
-        allow_multiple: false
 
   - name: "services"
     label: "Види послуг"
     folder: "content/services"
     create: true
-    slug: "{{title}}"
+    slug: "{{title | slugify}}"
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Превʼю", name: "preview", widget: "image" }
@@ -46,7 +49,7 @@ collections:
           label: "Фото"
           name: "image"
           widget: "image"
-      - { label: "Відео", name: "video", widget: "file" }
+      - { label: "Відео", name: "video", widget: "file", required: false }
       - { label: "Прайс", name: "price", widget: "markdown" }
       - { label: "Опис", name: "body", widget: "markdown" }
 
@@ -54,7 +57,7 @@ collections:
     label: "Портфоліо"
     folder: "content/portfolio"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.title | slugify}}"
     fields:
       - { label: "Назва", name: "title", widget: "string" }
       - { label: "Фото", name: "image", widget: "image" }

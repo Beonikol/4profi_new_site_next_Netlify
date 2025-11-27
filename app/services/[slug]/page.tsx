@@ -3,71 +3,53 @@ import path from "path";
 import matter from "gray-matter";
 import Image from "next/image";
 
-export async function generateStaticParams() {
-  const folder = path.join(process.cwd(), "content/services");
+export default async function ServicePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params; // ← ось ключ, без цього ніяк
 
-  // Якщо папка не існує — повертаємо пустий масив
-  if (!fs.existsSync(folder)) {
-    return [];
-  }
+  const base = path.join(process.cwd(), "content/services");
+  const filePath = path.join(base, `${slug}.md`);
 
-  // Фільтруємо тільки .md (бо може бути .gitkeep)
-  const files = fs
-    .readdirSync(folder)
-    .filter((file) => file.endsWith(".md"));
-
-  // Якщо немає файлів — теж нічого не генеруємо
-  if (files.length === 0) {
-    return [];
-  }
-
-  return files.map((file) => ({
-    slug: file.replace(".md", ""),
-  }));
-}
-
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const filePath = path.join(
-    process.cwd(),
-    "content/services",
-    `${params.slug}.md`
-  );
-
-  // Якщо файла немає — повертаємо порожню сторінку
   if (!fs.existsSync(filePath)) {
-    return <main className="py-16 px-4 max-w-4xl mx-auto">Послуга не знайдена.</main>;
+    return (
+      <main className="py-16 px-4 max-w-4xl mx-auto">
+        Послуга не знайдена.
+      </main>
+    );
   }
 
-  const file = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(file);
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
 
   return (
     <main className="py-16 px-4 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-6">{data.title}</h1>
 
-      {/* Фото-превʼю */}
       {data.preview && (
-        <div className="w-full flex justify-center mb-10">
-          <Image
-            src={data.preview}
-            alt={data.title}
-            width={1000}
-            height={600}
-            className="rounded-lg shadow-lg object-cover max-w-[900px]"
-          />
-        </div>
+        <Image
+          src={data.preview}
+          alt={data.title}
+          width={1000}
+          height={600}
+          className="rounded-lg shadow-lg object-cover max-w-[900px] mx-auto mb-10"
+        />
       )}
 
-      {/* Опис */}
+      {data.price && (
+        <div className="text-xl font-semibold mb-6">{data.price}</div>
+      )}
+
       <div className="prose prose-lg max-w-none mb-12">
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </div>
 
-      {/* Галерея */}
-      {data.gallery && data.gallery.length > 0 && (
+      {Array.isArray(data.gallery) && data.gallery.length > 0 && (
         <section className="space-y-6 mb-12">
-          {data.gallery.map((img: any, i: number) => {
-            const src = typeof img === "string" ? img : img.image;
+          {data.gallery.map((item: any, i: number) => {
+            const src = typeof item === "string" ? item : item.image;
             return (
               <div key={i} className="w-full flex justify-center">
                 <Image
@@ -83,14 +65,13 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         </section>
       )}
 
-      {/* Відео */}
       {data.video && (
         <div className="w-full flex justify-center mt-10">
           <video
             src={data.video}
             controls
             className="w-full max-w-[900px] aspect-video bg-black rounded-lg shadow-lg"
-          />
+          ></video>
         </div>
       )}
     </main>
