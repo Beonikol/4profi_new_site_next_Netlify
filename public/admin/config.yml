@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: main
+
+build:
+  hooks:
+    - name: "cms-update"
+      endpoint: "https://api.netlify.com/build_hooks/692e06bec3ffb2d67024b690"
+
+local_backend: true
+publish_mode: simple
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+slug:
+  encoding: unicode
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "about"
+    label: "Про нас"
+    folder: "content/about"
+    create: false
+    slug: "index"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Основний текст", name: "body", widget: "markdown" }
+      - label: "Галерея фото"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Фото"
+          name: "image"
+          widget: "image"
+      - label: "Відео"
+        name: "video"
+        widget: "file"
+        required: false
+
+  - name: "services"
+    label: "Види послуг"
+    folder: "content/services"
+    create: true
+    slug: "{{fields.slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+
+      # ✔️ ПРАВИЛЬНЕ ПОЛЕ SLUG
+      - label: "Slug (латиницею)"
+        name: "slug"
+        widget: "string"
+        pattern:
+          - "^[a-z0-9-]+$"
+          - "Тільки латиниця, цифри та дефіс"
+        hint: "Це стане імʼям файлу → druk-na-futbolkah"
+
+      - { label: "Превʼю", name: "preview", widget: "image" }
+
+      - label: "Галерея"
+        name: "gallery"
+        widget: "list"
+        field:
+          label: "Фото"
+          name: "image"
+          widget: "image"
+
+      - { label: "Відео", name: "video", widget: "file", required: false }
+      - { label: "Прайс", name: "price", widget: "markdown" }
+      - { label: "Опис", name: "body", widget: "markdown" }
+
+
+  - name: "portfolio"
+    label: "Портфоліо"
+    folder: "content/portfolio"
+    create: true
+    slug: "{{fields.title | slugify}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Фото", name: "image", widget: "image" }

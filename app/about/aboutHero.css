@@ -1,0 +1,103 @@
+.about-hero {
+  position: relative;
+  height: 55vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 6vw;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.15)
+    ),
+    url("/uploads/4Prof.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.85);
+  z-index: 1;
+  transform: scale(1.04);
+}
+
+.about-hero-text {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  text-align: left;
+  color: white;
+}
+
+.about-hero-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.about-hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  opacity: 0.85;
+  max-width: 550px;
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    height: 45vh;
+    padding-left: 4vw;
+  }
+
+  .about-hero-title {
+    font-size: 2.1rem;
+  }
+
+  .about-hero-subtitle {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    height: 40vh;
+  }
+
+  .about-hero-title {
+    font-size: 1.7rem;
+  }
+
+  .about-hero-subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- PARALLAX BACKGROUND ---------- */
+.about-hero {
+  perspective: 800px;
+}
+
+.about-hero-bg {
+  transform: translateZ(-20px) scale(1.12);
+  transition: transform 0.2s ease-out;
+}
+
+.about-hero.parallax-active .about-hero-bg {
+  transform: translateZ(-20px) scale(1.18) translateY(15px);
+}
+
+/* ---------- GRID OVERLAY ---------- */
+.about-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: 1;
+  pointer-events: none;
+}

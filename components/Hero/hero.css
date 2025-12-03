@@ -1,0 +1,100 @@
+/* ============================
+   КОНТЕЙНЕР HERO
+============================ */
+.cine-hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-left: 8vw;
+  color: white;
+}
+
+/* ============================
+   ВІДЕО + ТУМАН
+============================ */
+.cine-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.40);
+  animation: cineZoom 16s ease-in-out infinite alternate;
+}
+
+@keyframes cineZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+.cine-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.55) 70%
+  );
+  z-index: 1;
+}
+
+/* ============================
+   ТЕКСТ ЗА ЛІВИМ КРАЄМ
+============================ */
+.cine-text-left {
+  position: relative;
+  z-index: 3;
+  max-width: 600px;
+
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.cine-text-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cine-title-1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.cine-title-2 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.cine-subtitle {
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  opacity: 0.85;
+  text-align: left;
+}
+
+/* ============================
+   АДАПТИВ
+============================ */
+@media (max-width: 768px) {
+  .cine-hero {
+    padding-left: 5vw;
+  }
+
+  .cine-title-1 { font-size: 2.5rem; }
+  .cine-title-2 { font-size: 1.6rem; }
+  .cine-subtitle { font-size: 1.05rem; }
+}
+
+@media (max-width: 480px) {
+  .cine-title-1 { font-size: 2rem; }
+  .cine-title-2 { font-size: 1.3rem; }
+  .cine-subtitle { font-size: 0.95rem; }
+}

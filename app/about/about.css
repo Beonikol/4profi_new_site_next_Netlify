@@ -1,0 +1,207 @@
+/* ---------- BASE WRAPPER ---------- */
+.about-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ---------- PREMIUM SECTION ---------- */
+.about-section {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.about-content {
+  width: 100%;
+  max-width: 1100px;     /* тепер як відео */
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.22rem;
+  color: #2a2a2a;
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+}
+
+.about-content p {
+  margin-bottom: 1.4rem;
+}
+
+.about-content strong {
+  font-weight: 700;
+  color: #111;
+}
+
+.about-content h2,
+.about-content h3 {
+  margin-top: 2.6rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  color: #111;
+}
+
+/* плавне входження */
+.about-content {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* ---------- GALLERY ---------- */
+.about-gallery {
+  max-width: 1150px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.about-figure {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 14px 45px rgba(0,0,0,0.25);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.about-figure:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 55px rgba(0,0,0,0.32);
+}
+
+.about-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- VIDEO (PREMIUM SIZE) ---------- */
+.about-video-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1rem 6rem;
+}
+
+.about-video {
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.35);
+  transition: transform .4s ease;
+}
+
+.about-video:hover {
+  transform: translateY(-6px);
+}
+
+.about-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- MOBILE FIXES ---------- */
+@media (max-width: 768px) {
+  .about-content {
+    font-size: 1.1rem;
+  }
+  .about-gallery {
+    gap: 1.5rem;
+  }
+}
+
+.about-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.about-gallery {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+.about-video-wrapper {
+  margin-top: 4rem;
+}
+
+/* ---------- PREMIUM LOOK DECOR ------------ */
+
+/* Ніжний градієнт секції */
+.about-section {
+  position: relative;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.03),
+    rgba(0,0,0,0.00)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Преміальний вертикальний маркер зліва */
+.about-section::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  top: 15%;
+  width: 4px;
+  height: 70px;
+  background: linear-gradient(180deg, #ff3b30, #ff9500);
+  border-radius: 6px;
+  opacity: 0.35;
+}
+
+/* Плаваючий декоративний текст */
+.about-floating-word {
+  position: absolute;
+  top: 30%;
+  right: -5%;
+  font-size: 8rem;
+  font-weight: 900;
+  opacity: 0.03;
+  letter-spacing: -2px;
+  user-select: none;
+  pointer-events: none;
+  transform: rotate(-12deg);
+}
+
+/* Відступ між блоками */
+.about-section + .about-gallery,
+.about-gallery + .about-video-wrapper {
+  margin-top: 4rem;
+}
+
+/* ---------- TEXT HOVER PREMIUM EFFECT ---------- */
+.about-content p:hover,
+.about-content li:hover {
+  color: #000;
+  transform: translateX(3px);
+  transition: all 0.25s ease;
+}
+
+.about-content strong:hover {
+  color: #ff6f3c;
+  transition: 0.25s ease;
+}
