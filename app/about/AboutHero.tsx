@@ -46,3 +46,4 @@ export default function AboutHero({ title, subtitle }: AboutHeroProps) {
     </section>
   );
 }
+
