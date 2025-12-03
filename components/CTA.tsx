@@ -59,7 +59,7 @@ export default function CTA() {
   }, []);
 
   return (
-    <section className="cta-section relative py-28 mt-24 overflow-hidden bg-black text-white rounded-3xl max-w-6xl mx-auto mb-32">
+    <section className="cta-section relative py-28 mt-24 overflow-hidden bg-black/60 backdrop-blur-md text-white rounded-3xl max-w-6xl mx-auto mb-32">
 
       {/* Рамка */}
       <div className="cta-border absolute inset-0 rounded-3xl border border-white/10 pointer-events-none"></div>

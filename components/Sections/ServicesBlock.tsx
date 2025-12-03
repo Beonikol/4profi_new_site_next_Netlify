@@ -27,7 +27,7 @@ export default function ServicesBlock() {
   }, []);
 
   return (
-    <section className="services-section relative py-32 px-4 max-w-screen-xl mx-auto">
+    <section className="services-section relative py-32 px-4 max-w-screen-xl mx-auto bg-transparent">
 
       {/* Фонове слово */}
       <h2
@@ -52,7 +52,7 @@ export default function ServicesBlock() {
 
         {/* Item 1 */}
         <div className="
-          service-card bg-white border border-black/10
+          service-card bg-white/70 backdrop-blur-md border border-black/10
           rounded-3xl p-10 hover:-translate-y-2 hover:shadow-xl
           transition-all duration-300">
           <img
@@ -71,7 +71,7 @@ export default function ServicesBlock() {
 
         {/* Item 2 */}
         <div className="
-          service-card bg-white border border-black/10
+          service-card bg-white/30 backdrop-blur-md border border-black/10
           rounded-3xl p-10 hover:-translate-y-2 hover:shadow-xl
           transition-all duration-300">
           <img
@@ -90,7 +90,7 @@ export default function ServicesBlock() {
 
         {/* Item 3 */}
         <div className="
-          service-card bg-white border border-black/10
+          service-card bg-white/30 backdrop-blur-md border border-black/10
           rounded-3xl p-10 hover:-translate-y-2 hover:shadow-xl
           transition-all duration-300">
           <img

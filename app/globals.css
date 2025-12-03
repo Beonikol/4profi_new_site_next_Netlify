@@ -78,3 +78,24 @@ body {
   opacity: 1;
   transform: translateX(0) translateY(0);
 }
+
+/* === GLOBAL BACKGROUND FIX === */
+
+html, body {
+  min-height: 100%;
+}
+
+html {
+  background-image: url('/background.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+}
+
+body {
+  background: transparent !important;
+}
+
+main {
+  background: transparent !important;
+}

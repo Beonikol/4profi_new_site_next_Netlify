@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import Image from "next/image";
 import { marked } from "marked";
+import "./service.css";
 
 // -----------------------------------------
 // SSG: генеруємо список slug
@@ -68,31 +69,43 @@ export default async function ServicePage({ params }: any) {
   const { data, content } = matter(raw);
 
   return (
-  <main className="py-16 px-4 max-w-4xl mx-auto">
-    <h1 className="text-4xl font-bold mb-6">{data.title}</h1>
+  <main className="service-wrapper">
 
-    {/* 🟩 Ось сюди вставляємо блок з ціною */}
+    {/* HERO */}
+<section className="service-hero reveal">
+  <div className="service-hero-inner">
+
+    <h1 className="service-title premium-title">
+      {data.title}
+    </h1>
+
     {data.price && (
-      <p className="text-2xl font-semibold text-green-600 mb-6">
-        Ціна: <span className="font-bold">{data.price} грн</span>
-      </p>
-    )}
-    {/* 🟩 Кінець вставки */}
-
-    {data.preview && (
-      <Image
-        src={data.preview}
-        alt={data.title}
-        width={1200}
-        height={700}
-        className="rounded-lg shadow-lg object-cover max-w-[900px] mx-auto mb-10"
-      />
+      <div className="price-fly">
+        <span className="price-premium">{data.price} грн</span>
+      </div>
     )}
 
-    <div
-      className="prose prose-lg max-w-none mb-12"
-      dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+  </div>
+</section>
+
+    {/* IMAGE */}
+{data.preview && (
+  <div className="service-image-wrapper reveal">
+    <Image
+      src={data.preview}
+      alt={data.title}
+      width={1600}   // велике базове значення
+      height={900}   // під aspect-ratio 16:9
+      className="service-image"
     />
+  </div>
+)}
+
+    {/* CONTENT */}
+    <section className="service-content reveal">
+      <div dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
+    </section>
+
   </main>
 );
 }

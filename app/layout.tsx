@@ -23,20 +23,18 @@ export const metadata: Metadata = {
   description: "Брендування, гравірування, друк",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uk">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        
-        {/* 🟢 Викликаємо ініціалізацію Netlify Identity */}
-        <NetlifyInit />
-
+      {/* ті ж самі шрифти / antialiased, але БЕЗ bg-white */}
+      <body className="text-black antialiased">
         <Header />
-        {children}
+
+        {/* main без bg-white → фон з html буде видно */}
+        <main className="min-h-screen bg-transparent">
+  {children}
+</main>
+
         <Footer />
       </body>
     </html>

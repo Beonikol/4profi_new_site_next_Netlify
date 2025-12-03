@@ -33,7 +33,7 @@ export default function PromoSection() {
   }, []);
 
   return (
-    <section className="relative promo-wrapper max-w-6xl mx-auto px-4 py-24">
+    <section className="relative promo-wrapper max-w-6xl mx-auto px-4 py-24 bg-transparent">
       {/* Фоновий текст АКЦІЇ */}
       <h2
         className="
@@ -52,7 +52,7 @@ export default function PromoSection() {
         <div
           className="
             promo-card-left group relative overflow-hidden
-            rounded-3xl border border-gray-200 bg-white shadow-lg
+            rounded-3xl border border-gray-200 bg-white/70 backdrop-blur-lg
             transition-all duration-500
           "
         >
@@ -68,7 +68,7 @@ export default function PromoSection() {
             />
           </div>
 
-          <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-lg border">
+          <div className="absolute bottom-6 left-6 bg-white/70 backdrop-blur-lg backdrop-blur-md p-5 rounded-2xl shadow-lg border">
             <p className="text-sm text-gray-600 mb-1">Вибрані позиції та комплекти</p>
             <h3 className="text-xl font-bold mb-3">Акції до -50%</h3>
             <a
@@ -88,7 +88,7 @@ export default function PromoSection() {
         <div
           className="
             promo-card-right group relative overflow-hidden
-            rounded-3xl border border-gray-200 bg-white shadow-lg
+            rounded-3xl border border-gray-200 bg-white/70 backdrop-blur-lg shadow-lg
             transition-all duration-500
           "
         >
@@ -104,7 +104,7 @@ export default function PromoSection() {
             />
           </div>
 
-          <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-lg border">
+          <div className="absolute bottom-6 left-6 bg-white/70 backdrop-blur-lg p-5 rounded-2xl shadow-lg border">
             <p className="text-sm text-gray-600 mb-1">Рішення для бізнесу</p>
             <h3 className="text-xl font-bold mb-3">Термочашки та мерч</h3>
             <a
