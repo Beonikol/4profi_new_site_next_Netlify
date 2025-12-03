@@ -68,23 +68,31 @@ export default async function ServicePage({ params }: any) {
   const { data, content } = matter(raw);
 
   return (
-    <main className="py-16 px-4 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6">{data.title}</h1>
+  <main className="py-16 px-4 max-w-4xl mx-auto">
+    <h1 className="text-4xl font-bold mb-6">{data.title}</h1>
 
-      {data.preview && (
-        <Image
-          src={data.preview}
-          alt={data.title}
-          width={1200}
-          height={700}
-          className="rounded-lg shadow-lg object-cover max-w-[900px] mx-auto mb-10"
-        />
-      )}
+    {/* 🟩 Ось сюди вставляємо блок з ціною */}
+    {data.price && (
+      <p className="text-2xl font-semibold text-green-600 mb-6">
+        Ціна: <span className="font-bold">{data.price} грн</span>
+      </p>
+    )}
+    {/* 🟩 Кінець вставки */}
 
-      <div
-        className="prose prose-lg max-w-none mb-12"
-        dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+    {data.preview && (
+      <Image
+        src={data.preview}
+        alt={data.title}
+        width={1200}
+        height={700}
+        className="rounded-lg shadow-lg object-cover max-w-[900px] mx-auto mb-10"
       />
-    </main>
-  );
+    )}
+
+    <div
+      className="prose prose-lg max-w-none mb-12"
+      dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+    />
+  </main>
+);
 }
