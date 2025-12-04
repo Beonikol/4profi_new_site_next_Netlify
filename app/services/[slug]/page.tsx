@@ -67,6 +67,7 @@ export default async function ServicePage({ params }: any) {
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
+  const html = marked.parse(content);
 
   return (
   <main className="service-wrapper">
@@ -103,7 +104,10 @@ export default async function ServicePage({ params }: any) {
 
     {/* CONTENT */}
     <section className="service-content reveal">
-  <div className="prose-4profi" dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
+  <div
+    className="prose-4profi"
+    dangerouslySetInnerHTML={{ __html: html }}
+  />
 </section>
 
   </main>
