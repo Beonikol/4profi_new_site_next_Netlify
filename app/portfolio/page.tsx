@@ -41,7 +41,7 @@ export default function PortfolioPage() {
         {items.map((p, i) => (
           <div
             key={i}
-            className="rounded-2xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-[0_8px_25px_rgba(0,0,0,0.12)] transition cursor-pointer"
+            className="rounded-2xl bg-white/70 backdrop-blur shadow-lg hover:shadow-[0_8px_25px_rgba(0,0,0,0.12)] transition"
           >
             <FullImage src={p.preview} full={p.image} alt={p.title} />
 
