@@ -2,35 +2,45 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import Image from "next/image";
-import Reveal from "@/components/Reveal";
+import { marked } from "marked";
 
+import Reveal from "@/components/Reveal";
 import AboutHero from "./AboutHero";
 import "./about.css";
 
 export default function AboutPage() {
+  // 📁 Зчитуємо файл
   const filePath = path.join(process.cwd(), "content/about/index.md");
   const file = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(file);
 
+  // 🧹 Нормалізуємо markdown щоб не ламав HTML
+  const normalizedContent = content
+    .replace(/\r\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/^\s*•\s+/gm, "- ")
+    .replace(/•/g, "");
+
+
   return (
     <main className="about-wrapper">
-
-      {/* HERO */}
+      
+      {/* 🟦 HERO BLOCK */}
       <AboutHero title={data.title} />
 
-      {/* PREMIUM CONTENT BLOCK */}
+      {/* 🟨 TEXT CONTENT */}
       <section className="about-section">
-  <div className="about-floating-word">4PROFI</div>
+        <div className="about-floating-word">4PROFI</div>
 
-  <Reveal>
-    <div
-      className="about-content prose"
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
-  </Reveal>
-</section>
+        <Reveal>
+          <div
+  className="prose prose-4profi px-4"
+            dangerouslySetInnerHTML={{ __html: marked.parse(normalizedContent) }}
+          />
+        </Reveal>
+      </section>
 
-      {/* GALLERY */}
+      {/* 🖼 GALLERY SECTION */}
       {data.images && data.images.length > 0 && (
         <section className="about-gallery">
           {data.images.map((img: any, i: number) => (
@@ -47,7 +57,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      {/* VIDEO */}
+      {/* 🎥 VIDEO BLOCK */}
       {data.video && (
         <section className="about-video-wrapper">
           <div className="about-video">
@@ -55,6 +65,7 @@ export default function AboutPage() {
           </div>
         </section>
       )}
+
     </main>
   );
 }

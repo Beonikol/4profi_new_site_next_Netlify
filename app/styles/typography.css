@@ -1,0 +1,53 @@
+@layer utilities {
+  .prose-4profi {
+    @apply max-w-none text-[18px] leading-relaxed text-gray-700;
+  }
+
+  .prose-4profi h1 {
+    @apply text-5xl font-extrabold mt-12 mb-6 tracking-tight;
+  }
+
+  .prose-4profi h2 {
+    @apply text-4xl font-bold mt-10 mb-4 pb-2 border-b border-black/20;
+  }
+
+  .prose-4profi h3 {
+    @apply text-2xl font-semibold mt-8 mb-3;
+  }
+
+  .prose-4profi p {
+    @apply my-4 text-[18px] leading-[1.7];
+  }
+
+  /* ⛔ Забираємо Tailwind стилі списків */
+  .prose-4profi ul {
+    @apply my-5 space-y-2;
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .prose-4profi ul li {
+    @apply relative;
+    padding-left: 18px !important;
+    margin-bottom: .45rem;
+  }
+
+  /* 🔥 Чорний bullet */
+  .prose-4profi ul li::before {
+    content: "•";
+    @apply absolute;
+    left: 0;
+    top: 3px;
+    color: #111;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  /* Забираємо ::marker */
+  .prose-4profi ul li::marker {
+    content: "" !important;
+    font-size: 0 !important;
+    color: transparent !important;
+  }
+}

@@ -103,8 +103,8 @@ export default async function ServicePage({ params }: any) {
 
     {/* CONTENT */}
     <section className="service-content reveal">
-      <div dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
-    </section>
+  <div className="prose-4profi" dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
+</section>
 
   </main>
 );

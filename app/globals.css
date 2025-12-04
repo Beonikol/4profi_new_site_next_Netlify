@@ -1,5 +1,14 @@
+/* Tailwind must load first */
 @import "tailwindcss";
 
+/* Custom typography must load right after tailwind */
+@import "./styles/typography.css";
+
+@import './about/about.css';
+
+/* ============================
+   VARIABLES
+============================ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,12 +28,17 @@
   }
 }
 
+/* ============================
+   BASE STYLING
+============================ */
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Animations */
 @keyframes fade {
   from {
     opacity: 0;
@@ -40,20 +54,7 @@ body {
   animation: fade 0.2s ease-out;
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 1.4s ease,
-    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* БАЗА */
+/* Reveal animation */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -62,24 +63,18 @@ body {
     transform 0.7s ease-out;
 }
 
-/* Напрямки виїзду */
-.reveal-left {
-  transform: translateX(-60px);
-}
-.reveal-right {
-  transform: translateX(60px);
-}
-.reveal-up {
-  transform: translateY(60px);
-}
+.reveal-left { transform: translateX(-60px); }
+.reveal-right { transform: translateX(60px); }
+.reveal-up { transform: translateY(60px); }
 
-/* Коли елемент у вʼюпорті */
 .reveal-visible {
   opacity: 1;
   transform: translateX(0) translateY(0);
 }
 
-/* === GLOBAL BACKGROUND FIX === */
+/* ============================
+   GLOBAL BACKGROUND
+============================ */
 
 html, body {
   min-height: 100%;

@@ -6,9 +6,11 @@
 
 /* ---------- PREMIUM SECTION ---------- */
 .about-section {
+  width: 100%;
   display: flex;
   justify-content: center;
   padding: 4rem 1.5rem;
+  box-sizing: border-box;
 }
 
 .about-content {
@@ -155,7 +157,7 @@
   z-index: 0;
 }
 
-.about-section > * {
+.about-section * {
   position: relative;
   z-index: 2;
 }
@@ -164,7 +166,7 @@
 .about-section::after {
   content: "";
   position: absolute;
-  left: 4%;
+  left: 20px;
   top: 15%;
   width: 4px;
   height: 70px;
@@ -205,3 +207,92 @@
   color: #ff6f3c;
   transition: 0.25s ease;
 }
+
+/* --------- MARKDOWN CONTENT FIX (PROSE AREA) ----------- */
+
+.prose-4profi {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.22rem;
+  color: #2a2a2a;
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+}
+
+/* Текст */
+.prose-4profi p {
+  margin-bottom: 1.3rem;
+}
+
+/* Заголовки */
+.prose-4profi h2,
+.prose-4profi h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  color: #111;
+}
+
+/* Списки */
+/* .prose-4profi ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.3rem;
+} */
+
+/* .prose-4profi li {
+  margin-bottom: .5rem;
+} */
+
+/* Забираємо фони з markdown структур */
+.prose-4profi * {
+  background: transparent !important;
+}
+
+/* Ховер ефект */
+.prose-4profi p:hover,
+.prose-4profi li:hover {
+  color: #000;
+  transform: translateX(3px);
+  transition: 0.25s ease;
+}
+
+.prose-4profi strong:hover {
+  color: #ff6f3c;
+}
+
+/* -------- PREMIUM BULLETS - BLACK (Tailwind typography override) -------- */
+
+.prose.prose-4profi ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.prose.prose-4profi ul li {
+  position: relative;
+  padding-left: 18px !important;
+  margin-bottom: .5rem;
+}
+
+/* Наш кастомний bullet */
+.prose.prose-4profi ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  color: #111;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Повністю вимикаємо marker */
+.prose.prose-4profi ul li::marker {
+  content: "" !important;
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
+
