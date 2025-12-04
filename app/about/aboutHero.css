@@ -90,7 +90,7 @@
 }
 
 /* ---------- GRID OVERLAY ---------- */
-.about-hero::after {
+/* .about-hero::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -100,7 +100,7 @@
   background-size: 80px 80px;
   z-index: 1;
   pointer-events: none;
-}
+} */
 
 .about-hero {
   background: transparent !important;
