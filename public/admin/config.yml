@@ -72,10 +72,13 @@ collections:
 
 
   - name: "portfolio"
-    label: "Портфоліо"
+    label: "Портфоліо робіт"
     folder: "content/portfolio"
     create: true
-    slug: "{{fields.title | slugify}}"
+    slug: "{{slug}}"
     fields:
       - { label: "Назва", name: "title", widget: "string" }
-      - { label: "Фото", name: "image", widget: "image" }
+      - { label: "Короткий тег", name: "tag", widget: "string", required: false }
+      - { label: "Preview фото (картка)", name: "preview", widget: "image" }
+      - { label: "Фото у повному розмірі", name: "image", widget: "image" }
+      - { label: "Клієнт (необов'язково)", name: "client", widget: "string", required: false }
